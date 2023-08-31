@@ -1,0 +1,28 @@
+frequency:
+  cron: '*/5 * * * 1-5' # Defines a schedule for when the facts defined in this file should be collected
+  # This is optional and if omitted, facts will only be collected on demand.
+filter: # A filter specifying which entities to collect the specified facts for
+  kind: 'Component'
+cache: # Defines if the collected facts should be cached, and if so for how long
+  duration:
+    hours: 2
+collects: # An array of fact extractor configuration describing how to collect SCM facts.
+  - factName:
+      readme_and_catalog_info_files_exist_fact # This gives this fact an identifier which is
+      # used to refer to the fact in other
+      # configuration files.
+    type: exists # This identifies the type of fact to collect.
+    data: # This defines the data element which will be returned in the
+      # fact object when the fact is collected.
+      - name: readme_exists # Label for the data element.
+        path: /README.md # The file for which existence will be determined.
+      - name: catalog_info_exists # Label for the data element.
+        path: /catalog-info.yaml
+  - factName:
+      python_service_runs_tests # This gives this fact an identifier which is
+      # used to refer to the fact in other
+      # configuration files.
+    type: regex # This identifies the type of fact to collect.
+    regex:
+      \s*run:\s*\|*\s*pytest.*$
+    path: /.github/workflows/build.yaml

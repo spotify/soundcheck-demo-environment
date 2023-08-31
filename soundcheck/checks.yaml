@@ -1,0 +1,164 @@
+---
+- id: has_less_than_ten_open_issues
+  rule:
+    factRef: github:default/repo_details
+    path: $.open_issues
+    operator: lessThan
+    value: 10
+  passedMessage: |
+    Less than 10 open issues
+  failedMessage: |
+    Ten or more open issue(s)
+- id: is_repo_private
+  rule:
+    factRef: github:default/repo_details
+    path: $.private
+    operator: equal
+    value: true
+  passedMessage: |
+    Repo is private
+  failedMessage: |
+    Repo is not private, change repo to private
+- id: default_branch_is_main
+  rule:
+    factRef: github:default/repo_details
+    path: $.default_branch
+    operator: equal
+    value: main
+  passedMessage: |
+    Default banch is main
+  failedMessage: |
+    Change default branch to main
+- id: has_readme_check # The name of the check
+  rule: # How to evaluate this check
+    factRef: scm:default/readme_and_catalog_info_files_exist_fact # The fact data to reference
+    path: $.readme_exists # The path to the field to analyze
+    operator: equal # Indicates the operation to apply
+    value: true # The desired value of the field indicated in path, above.
+- id: has_catalog_info_file_check
+  rule:
+    factRef: scm:default/readme_and_catalog_info_files_exist_fact
+    path: $.catalog_info_exists
+    operator: equal
+    value: true
+- id: python_service_runs_tests
+  rule:
+    factRef: scm:default/python_service_runs_tests
+    path: $.matches
+    operator: equal
+    value: true
+- id: less_than_4_branches
+  rule:
+    factRef: branch:default/branch_count
+    path: $.totalCount
+    operator: lessThan
+    value: 4
+  passedMessage: |
+    Less than 4 branches
+  failedMessage: |
+    4 or more branches
+- id: less_than_3_branches
+  rule:
+    factRef: branch:default/branch_count
+    path: $.totalCount
+    operator: lessThan
+    value: 3
+  passedMessage: |
+    Less than 3 branches
+  failedMessage: |
+    3 or more branches
+- id: require-code-owner-review
+  rule:
+    factRef: github:default/protections
+    path: $.required_pull_request_reviews.require_code_owner_reviews
+    operator: equal
+    value: true
+  passedMessage: |
+    require_code_owner_reviews true
+  failedMessage: |
+    require_code_owner_reviews false
+- id: approving-review-count
+  rule:
+    factRef: github:default/protections
+    path: $.required_pull_request_reviews.required_approving_review_count
+    operator: greaterThan
+    value: 1
+  passedMessage: |
+    required_approving_review_count greaterThan 1
+  failedMessage: |
+    required_approving_review_count lessThan 2
+- id: github_actions_tests_passing
+  rule:
+    factRef: custom:default/github_actions_test
+    path: $.testPassed
+    operator: equal
+    value: true
+- id: lifecycle_defined
+  rule:
+    any:
+      - factRef: catalog:default/entity_descriptor
+        path: $.spec.lifecycle
+        operator: equal
+        value: experimental
+      - factRef: catalog:default/entity_descriptor
+        path: $.spec.lifecycle
+        operator: equal
+        value: production
+  schedule:
+    frequency:
+      cron: '*/5 * * * 1-5'
+    filter:
+      kind: 'Component'
+- id: has_pagerduty_integration_key
+  rule:
+    factRef: catalog:default/entity_descriptor
+    path: $.metadata.annotations["pagerduty.com/integration-key"]
+    operator: matches
+    value: .+
+  schedule:
+    frequency:
+      cron: '*/5 * * * 1-5'
+    filter:
+      kind: 'Component'
+- id: is_level_one_certified_branch_protections_and_number
+  rule:
+    all:
+      - factRef: soundcheck:default/program/branch-protections
+        path: $.highestLevel.ordinal
+        operator: greaterThanInclusive
+        value: 1
+      - factRef: soundcheck:default/program/number-of-branches
+        path: $.highestLevel.ordinal
+        operator: greaterThanInclusive
+        value: 1
+  schedule:
+    frequency:
+      cron: '*/5 * * * 1-5'
+    filter:
+      kind: 'Component'
+- id: is_level_two_certified_branch_protections_and_number
+  rule:
+    all:
+      - factRef: soundcheck:default/program/branch-protections
+        path: $.highestLevel.ordinal
+        operator: greaterThanInclusive
+        value: 2
+      - factRef: soundcheck:default/program/number-of-branches
+        path: $.highestLevel.ordinal
+        operator: greaterThanInclusive
+        value: 2
+  schedule:
+    frequency:
+      cron: '*/5 * * * 1-5'
+    filter:
+      kind: 'Component'
+- id: has_description
+  rule:
+    factRef: github:default/repo_details
+    path: $.description
+    operator: matches
+    value: .+
+  passedMessage: |
+    Repo has a description
+  failedMessage: |
+    Repo does not have a description

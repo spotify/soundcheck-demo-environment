@@ -1,0 +1,126 @@
+---
+- id: basic-setup
+  name: Basic Setup
+  ownerEntityRef: group:default/example-owner
+  description: >
+    Improve quality and reliability of your software component
+    by measuring the use of testing best practices.
+  documentationURL: https://github.com/ThayerAltman/example-backstage/blob/main/README.md
+  levels:
+    - ordinal: 1
+      checks:
+        - id: has_less_than_ten_open_issues
+          name: Less than 10 open issues
+          description: >
+            The service should have less than 10 open issues
+        - id: is_repo_private
+          name: The GitHub repo is private
+          description: >
+            All repos need to private.
+        - id: has_description
+          name: has_description
+          description: >
+            has_description
+        - id: default_branch_is_main
+          name: The default branch is main
+          description: >
+            Default branches should be named main
+    - ordinal: 2
+      checks:
+        - id: has_readme_check
+          name: Readme exists
+          description: >
+            Indicates whether there is a readme in the repo.
+        - id: has_catalog_info_file_check
+          name: Catalog-info exists
+          description: >
+            Indicates the repo contains a catalog-info.yaml.
+        - id: lifecycle_defined
+          name: Has component lifecycle correctly defined.
+          description: >
+            Indicates whether the catalog-info.yaml has the lifecycle defined.
+        - id: has_pagerduty_integration_key
+          name: Has component PagerDuty key defiend.
+          description: >
+            Indicates whether the PagerDuty key is defined for the component.
+- id: test-certified
+  name: Test Certified
+  ownerEntityRef: group:default/example-owner
+  description: >
+    Improve quality and reliability of your software component
+    by measuring the use of testing best practices.
+  documentationURL: https://www.backstage.io
+  filter:
+    catalog:
+      metadata.tags: python
+  levels:
+    - ordinal: 1
+      checks:
+        - id: python_service_runs_tests
+          name: The python service runs pytest
+          description: >
+            This service is currently running pytest as part of its GitHub actions workflow as defined in the build.yaml
+    - ordinal: 2
+      checks:
+        - id: github_actions_tests_passing
+          name: CI/CD Tests passing
+          description: >
+            The last tests run in GitHub Actions was successful.
+- id: number-of-branches
+  name: Number of Branches
+  ownerEntityRef: group:default/example-owner
+  description: >
+    Just an example of using a custom fact collector.
+  documentationURL: https://www.backstage.io
+  levels:
+    - ordinal: 1
+      checks:
+        - id: less_than_4_branches
+          name: Less Than 4 branches
+          description: >
+            Indicates whether the Entity has less than 4 branches
+    - ordinal: 2
+      checks:
+        - id: less_than_3_branches
+          name: Less Than 3 branches
+          description: >
+            Indicates whether the Entity has less than 3 branches
+- id: branch-protections
+  name: Branch Protections
+  ownerEntityRef: group:default/web
+  description: >
+    Branch protection example
+  documentationURL: https://docs.github.com/en/rest/branches/branch-protection?apiVersion=2022-11-28
+  levels:
+    - ordinal: 1
+      checks:
+        - id: require-code-owner-review
+          name: Require Code Owner Review
+          description: >
+            Indicates whether the entity requires code owner reviews
+    - ordinal: 2
+      checks:
+        - id: approving-review-count
+          name: More than 1 Reviewer
+          description: >
+            Indicates whether the entity requires more than 1 code reviewer
+- id: two-programs-aggregate
+  name: Aggregate Program of Two Programs
+  ownerEntityRef: group:default/web
+  description: >
+    Indicates an entity has at level certification for Branch Protections and Number of Branches
+  levels:
+    - ordinal: 1
+      checks:
+        - id: is_level_one_certified_branch_protections_and_number
+          name: Certified Level One for Branch Protections and Number of Branches
+          description: >
+            Indicates whether the entity is level 1 certified for the Branch Protections and Number of Branches programs
+    - ordinal: 2
+      checks:
+        - id: is_level_two_certified_branch_protections_and_number
+          name: Certified Level Two for Branch Protections and Number of Branches
+          description: >
+            Indicates whether the entity is level 2 certified for the Branch Protections and Number of Branches programs
+
+        

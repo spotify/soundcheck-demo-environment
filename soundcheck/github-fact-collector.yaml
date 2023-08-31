@@ -1,0 +1,15 @@
+---
+frequency:
+  cron: '*/5 * * * 1-5'
+filter:
+  kind: 'Component'
+cache:
+  duration:
+    hours: 2
+collects:
+  - factName: repo_details
+    type: RepositoryDetails
+    cache: true
+  - factName: protections
+    type: BranchProtections
+    cache: true

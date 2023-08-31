@@ -1,0 +1,11 @@
+---
+frequency:
+  cron: '*/5 * * * 1-5'
+cache: # Defines if the collected facts should be cached, and if so for how long
+  duration:
+    hours: 2
+filter: # A filter specifying which entities to collect the specified facts for
+  kind: 'Component'
+collects:
+  factName: branch_count
+  type: branchDescriptor 

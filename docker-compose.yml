@@ -1,0 +1,20 @@
+version: '3'
+services:
+  backstage:
+    image: backstage
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: postgres
+      # Add your token here
+      GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
+      SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
+    ports:
+      - '7007:7007'
+    volumes:
+      - ./soundcheck:/app/soundcheck
+      - ./examples/:/app/examples
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
