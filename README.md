@@ -17,7 +17,7 @@ Click `Generate Token`. If successfull, your token will appear on a new page. Do
 > Backstage can also use GitHub Apps instead of a personal access token. This is slightly harder to set up, but it does allow higher rate limits for the GitHub API. You can find these instructions [in the documentation](https://backstage.io/docs/integrations/github/github-apps#docsNav).
 
 ### 2. Obtain a Spotify Bundle for Backstage Demo License Key
-[Contact sales](https://backstage.spotify.com/contact-us/pricing/)
+[Contact sales](https://backstage.spotify.com/contact-us/pricing/) to obtain a demo license key. This will only be valid for **2 weeks**.
 
 ### 3. Update the `docker-compose.yaml` with the new configuration values
 Update values for `<INSERT_GITHUB_TOKEN>` AND `<INSERT_LICENSE_KEY>` with the respective values from steps 1 and 2.
