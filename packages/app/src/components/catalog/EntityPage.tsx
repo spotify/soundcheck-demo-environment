@@ -205,6 +205,9 @@ const websiteEntityPage = (
     <EntityLayout.Route path="/docs" title="Docs">
       {techdocsContent}
     </EntityLayout.Route>
+    <EntityLayout.Route path="/soundcheck" title="Soundcheck">
+      <GroupSoundcheckContent />
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -273,6 +276,9 @@ const apiPage = (
         </Grid>
       </Grid>
     </EntityLayout.Route>
+    <EntityLayout.Route path="/soundcheck" title="Soundcheck">
+      <GroupSoundcheckContent />
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -288,6 +294,9 @@ const userPage = (
           <EntityOwnershipCard variant="gridItem" />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/soundcheck" title="Soundcheck">
+      <GroupSoundcheckContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
@@ -358,6 +367,9 @@ const systemPage = (
         unidirectional={false}
       />
     </EntityLayout.Route>
+    <EntityLayout.Route path="/soundcheck" title="Soundcheck">
+      <GroupSoundcheckContent />
+    </EntityLayout.Route>
   </EntityLayout>
 );
 
@@ -376,6 +388,9 @@ const domainPage = (
           <EntityHasSystemsCard variant="gridItem" />
         </Grid>
       </Grid>
+    </EntityLayout.Route>
+    <EntityLayout.Route path="/soundcheck" title="Soundcheck">
+      <GroupSoundcheckContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
