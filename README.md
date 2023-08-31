@@ -45,7 +45,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
 ```
 
-## Running locally
+## 4. Run it!
 To run this repo just run the following command from the root folder:
 
 ```bash
