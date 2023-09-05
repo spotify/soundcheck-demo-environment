@@ -51,3 +51,32 @@ To run this repo just run the following command from the root folder:
 ```bash
 make start
 ```
+
+This will give you a backstage instance with Soundcheck installed and some sample tracks/checks in place. Import a service of your own to the product catalog and then go to the component view to see it in action.
+
+The backstage demo environment will be running at `http://localhost:7007`
+
+
+## Where the Soundcheck logic lives
+
+The YAML configured Soundcheck logic lives within the `app-config.yaml` file here. This is a good starting point to be able to reference each of the defined files that soundcheck uses.
+```
+soundcheck:
+  programs:
+    $include: ./soundcheck/tracks.yaml
+  checks:
+    $include: ./soundcheck/checks.yaml
+  collectors:
+    github:
+      $include: ./soundcheck/github-fact-collector.yaml
+    scm:
+      $include: ./soundcheck/scm-fact-collector.yaml
+    branch:
+      $include: ./soundcheck/branch-fact-collector.yaml
+```
+
+
+
+
+
+
