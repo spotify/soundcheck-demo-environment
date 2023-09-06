@@ -57,12 +57,12 @@ This will give you a backstage instance with Soundcheck installed and some sampl
 The backstage demo environment will be running at `http://localhost:7007`
 
 
-## **(optional)** Adding Github Authentication:
+## Adding Github Authentication (optional)
 
 If you want to create your own Soundcheck tracks using the No-code UI, you'll need to update this demo to include github authenication. You can skip this step if you are just going to use the yaml version.
 
 
-1. Go to [https://github.com/settings/applications/new](https://github.com/settings/applications/new) to create your OAuth App.
+### 1. Go to [https://github.com/settings/applications/new](https://github.com/settings/applications/new) to create your OAuth App.
 
 - `Homepage URL` should point to Backstage's
   frontend, in our demo it would be `http://localhost:7007`
@@ -73,7 +73,7 @@ If you want to create your own Soundcheck tracks using the No-code UI, you'll ne
 
 Generate a new `Client Secret` and take a note of the `Client ID` and the `Client Secret`.
 
-2. Add the credentials to the configuration
+### 2.Add the credentials to the configuration
 
 Open `app-config.yaml` add the below configuration and replace the values with the `Client ID` and the `Client Secret` from GitHub.
 
@@ -88,9 +88,12 @@ auth:
         clientSecret: YOUR CLIENT SECRET
 ```
 
-3. Go to `App.tsx` and uncomment the block comments labeled `Uncomment for auth`
+### 3. Add GH authentication to the Backstage UI
 
-4. Restart your backstage instance
+Go to `App.tsx` and uncomment the block comments labeled `Uncomment for auth`
+
+
+### 4. Restart your backstage instance
 
 
 ## Where the Soundcheck logic lives
