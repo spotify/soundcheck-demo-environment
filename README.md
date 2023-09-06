@@ -57,6 +57,42 @@ This will give you a backstage instance with Soundcheck installed and some sampl
 The backstage demo environment will be running at `http://localhost:7007`
 
 
+## **(optional)** Adding Github Authentication:
+
+If you want to create your own Soundcheck tracks using the No-code UI, you'll need to update this demo to include github authenication. You can skip this step if you are just going to use the yaml version.
+
+
+1. Go to [https://github.com/settings/applications/new](https://github.com/settings/applications/new) to create your OAuth App.
+
+- `Homepage URL` should point to Backstage's
+  frontend, in our demo it would be `http://localhost:7007`
+- `Authorization callback URL` should point to the auth backend, `http://localhost:7007/api/auth/github/handler/frame`
+
+![image](https://github.com/joecombopiano/soundcheck-demo-environment/assets/4485262/6ec2f8e5-16c2-4f17-8122-ad86edb2bb8f)
+
+
+Generate a new `Client Secret` and take a note of the `Client ID` and the `Client Secret`.
+
+2. Add the credentials to the configuration
+
+Open `app-config.yaml` add the below configuration and replace the values with the `Client ID` and the `Client Secret` from GitHub.
+
+```yaml
+auth:
+  # see https://backstage.io/docs/auth/ to learn about auth providers
+  environment: development
+  providers:
+    github:
+      development:
+        clientId: YOUR CLIENT ID
+        clientSecret: YOUR CLIENT SECRET
+```
+
+3. Go to `App.tsx` and uncomment the block comments labeled `Uncomment for auth`
+
+4. Restart your backstage instance
+
+
 ## Where the Soundcheck logic lives
 
 The YAML configured Soundcheck logic lives within the `app-config.yaml` file here. This is a good starting point to be able to reference each of the defined files that soundcheck uses.
