@@ -59,7 +59,6 @@ import {
   EntitySoundcheckContent,
   EntitySoundcheckCard,
 } from '@spotify/backstage-plugin-soundcheck';
-import { GroupSoundcheckContent } from '@spotify/backstage-plugin-soundcheck';
 
 
 const techdocsContent = (
@@ -206,7 +205,7 @@ const websiteEntityPage = (
       {techdocsContent}
     </EntityLayout.Route>
     <EntityLayout.Route path="/soundcheck" title="Soundcheck">
-      <GroupSoundcheckContent />
+      <EntitySoundcheckContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
@@ -277,7 +276,7 @@ const apiPage = (
       </Grid>
     </EntityLayout.Route>
     <EntityLayout.Route path="/soundcheck" title="Soundcheck">
-      <GroupSoundcheckContent />
+      <EntitySoundcheckContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
@@ -296,7 +295,7 @@ const userPage = (
       </Grid>
     </EntityLayout.Route>
     <EntityLayout.Route path="/soundcheck" title="Soundcheck">
-      <GroupSoundcheckContent />
+      <EntitySoundcheckContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
@@ -318,7 +317,7 @@ const groupPage = (
       </Grid>
     </EntityLayout.Route>
     <EntityLayout.Route path="/soundcheck" title="Soundcheck">
-      <GroupSoundcheckContent />
+      <EntitySoundcheckContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
@@ -368,7 +367,7 @@ const systemPage = (
       />
     </EntityLayout.Route>
     <EntityLayout.Route path="/soundcheck" title="Soundcheck">
-      <GroupSoundcheckContent />
+      <EntitySoundcheckContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
@@ -390,7 +389,7 @@ const domainPage = (
       </Grid>
     </EntityLayout.Route>
     <EntityLayout.Route path="/soundcheck" title="Soundcheck">
-      <GroupSoundcheckContent />
+      <EntitySoundcheckContent />
     </EntityLayout.Route>
   </EntityLayout>
 );
