@@ -1,6 +1,5 @@
 import { CatalogBuilder } from '@backstage/plugin-catalog-backend';
-import { ScaffolderEntitiesProcessor } from '@backstage/plugin-scaffolder-backend';
-import { Router } from 'express';
+import { ScaffolderEntitiesProcessor } from '@backstage/plugin-catalog-backend-module-scaffolder-entity-model';import { Router } from 'express';
 import { PluginEnvironment } from '../types';
 
 export default async function createPlugin(

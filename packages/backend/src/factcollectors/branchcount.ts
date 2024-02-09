@@ -13,7 +13,6 @@ import {
 import { Logger } from "winston";
 import { Config, JsonObject } from "@backstage/config";
 import { DateTime } from "luxon";
-import { BranchCountExtractorsStore } from "./store/branchcountextractorsstore";
 import parseGitUrl from "git-url-parse";
 import {
   DefaultGithubCredentialsProvider,
@@ -22,14 +21,13 @@ import {
 } from "@backstage/integration";
 import { graphql, GraphQlQueryResponseData } from "@octokit/graphql";
 
-//EXAMPLE OF A CUSTOM FACT COLLECTOR
+// EXAMPLE OF A CUSTOM FACT COLLECTOR
 
 export class BranchCountFactCollector implements FactCollector {
   public static ID = "branch";
 
   // Private fields
   readonly #logger: Logger;
-  readonly #BranchCountExtractorsStore: BranchCountExtractorsStore;
   readonly #credentialsProvider: GithubCredentialsProvider;
 
   /**
@@ -58,10 +56,6 @@ export class BranchCountFactCollector implements FactCollector {
     this.#logger = logger.child({
       target: this.id,
     });
-    this.#BranchCountExtractorsStore = BranchCountExtractorsStore.create(
-      this.#logger,
-      config
-    );
     this.#credentialsProvider =
       DefaultGithubCredentialsProvider.fromIntegrations(
         ScmIntegrations.fromConfig(config)
@@ -171,15 +165,9 @@ export class BranchCountFactCollector implements FactCollector {
    * Gets the collection configurations
    * @returns {Promise<CollectionConfig[]>} - A Promise that resolves with an array of collection configurations
    */
-  getCollectionConfigs() {
-    return Promise.resolve(
-      this.buildCollectionConfigs(
-        this.id,
-        this.#BranchCountExtractorsStore.getExtractorConfigs()
-      )
-    );
+  async getCollectionConfigs(): Promise<CollectionConfig[]> {
+    return [];
   }
-
   /**
    * Gets the data schema.
    * @param {_factRef: FactRef} factRef - The reference to the fact.
@@ -194,11 +182,8 @@ export class BranchCountFactCollector implements FactCollector {
    * Gets the fact names.
    * @returns {Promise<string[]>} A promise that resolves with an array of fact names.
    */
-  getFactNames() {
-    return Promise.resolve(
-      this.#BranchCountExtractorsStore
-        .getExtractorConfigs()
-        .map((c) => c.factName)
-    );
+   async getFactNames(): Promise<string[]> {
+    return ['branch_count'];
   }
+
 }
