@@ -162,3 +162,27 @@
     Repo has a description
   failedMessage: |
     Repo does not have a description
+- id: requires_resource_type_to_be_technical_service
+  rule:
+    factRef: pagerduty:default/standards
+    path: $.resource_type
+    operator: equal
+    value: technical_service
+  schedule:
+    frequency:
+      minutes: 5
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'
+- id: requires_type_to_be_service
+  rule:
+    factRef: pagerduty:default/service
+    path: $.type
+    operator: equal
+    value: service
+  schedule:
+    frequency:
+      minutes: 5
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'

@@ -12,6 +12,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: example-website
+  annotations:
+    pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
 spec:
   type: website
   lifecycle: experimental
