@@ -64,7 +64,7 @@ The backstage demo environment will be running at `http://localhost:7007`
 
 ### 1. Setup pager duty service
 
-1. Go to https://spotify.pagerduty.com/
+1. Go to https://www.pagerduty.com/
 2. Sign in
 3. Navigate to My Profile > User Settings
 4. Create an API User Token (if you dont already have one)
@@ -74,8 +74,8 @@ The backstage demo environment will be running at `http://localhost:7007`
 
 ```
 url will look simlar to below
-https://spotify.pagerduty.com/service-directory/PPG1KN1
-service id is the last part of the url > PPG1KN1
+https://www.pagerduty.com/service-directory/ABC1DE2
+service id is the last part of the url > ABC1DE2
 ```
 
 ### 2. Update docker-compose.yml
