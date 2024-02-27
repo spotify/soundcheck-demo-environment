@@ -1,0 +1,10 @@
+baseUrl: 'http://${SONARQUBE_HOST}:${SONARQUBE_PORT}'
+username: ${SONARQUBE_ADMIN_USERNAME}
+password: ${SONARQUBE_ADMIN_PASSWORD}
+collects:
+  - type: projects
+    filter:
+      - spec.type: 'website'
+    cache: false
+    frequency:
+      minutes: 1

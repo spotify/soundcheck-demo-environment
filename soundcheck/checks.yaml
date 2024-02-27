@@ -162,3 +162,9 @@
     Repo has a description
   failedMessage: |
     Repo does not have a description
+- id: has_sonarqube_project
+  rule:
+    factRef: sonarqube:default/projects
+    path: $.paging.total
+    operator: greaterThan
+    value: 0

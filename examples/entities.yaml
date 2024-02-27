@@ -12,6 +12,8 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: example-website
+  annotations:
+    sonarqube.org/project-key: test-project-key
 spec:
   type: website
   lifecycle: experimental

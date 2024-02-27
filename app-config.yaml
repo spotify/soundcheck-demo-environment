@@ -107,6 +107,8 @@ soundcheck:
       $include: ./soundcheck/scm-fact-collector.yaml
     branch:
       $include: ./soundcheck/branch-fact-collector.yaml
+    sonarqube:
+      $include: ./soundcheck/sonarqube-fact-collector.yaml
 
     ## Uncomment these lines to add more example data
     # - type: url

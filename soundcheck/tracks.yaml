@@ -122,5 +122,15 @@
           name: Certified Level Two for Branch Protections and Number of Branches
           description: >
             Indicates whether the entity is level 2 certified for the Branch Protections and Number of Branches programs
-
-        
+- id: sonarqube
+  name: Sonarqube
+  ownerEntityRef: group:default/web
+  description: >
+    Indicates if SonarQube is configured for the entity
+  levels:
+    - ordinal: 1
+      checks:
+        - id: has_sonarqube_project
+          name: Has an associated SonarQube project
+          description: >
+            Indicates whether the entity has a SonarQube project setup for it.

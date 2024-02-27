@@ -41,6 +41,7 @@
     "@spotify/backstage-plugin-soundcheck-backend": "^0.13.5",
     "@spotify/backstage-plugin-soundcheck-backend-module-github": "^0.5.1",
     "@spotify/backstage-plugin-soundcheck-backend-module-scm": "^0.6.1",
+    "@spotify/backstage-plugin-soundcheck-backend-module-sonarqube": "^0.1.2",
     "@spotify/backstage-plugin-soundcheck-common": "^0.11.1",
     "@spotify/backstage-plugin-soundcheck-node": "^0.4.7",
     "@types/git-url-parse": "^9.0.3",
