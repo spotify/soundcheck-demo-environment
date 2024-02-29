@@ -14,6 +14,7 @@ services:
       SONARQUBE_PORT: 9000
       SONARQUBE_ADMIN_USERNAME: admin
       SONARQUBE_ADMIN_PASSWORD: admin123
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
     ports:
       - '7007:7007'
     volumes:

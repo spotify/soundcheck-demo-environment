@@ -134,3 +134,19 @@
           name: Has an associated SonarQube project
           description: >
             Indicates whether the entity has a SonarQube project setup for it.
+- id: pagerduty
+  name: PagerDuty
+  ownerEntityRef: group:default/example-owner
+  description: >
+    Indicates whether the entity meets PagerDuty standards
+  levels:
+    - ordinal: 1
+      checks:
+        - id: requires_resource_type_to_be_technical_service
+          name: Requires resource type to be Technical Service
+          description: >
+            Indicates whether the PagerDuty resource associated with the entity is of resource type: technical service
+        - id: requires_type_to_be_service
+          name: Requires service type to be Service
+          description: >
+            Indicates whether the PagerDuty resource associated to the entity is a service.
