@@ -8,6 +8,7 @@ services:
       # Add your token here
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
     ports:
       - '7007:7007'
     volumes:

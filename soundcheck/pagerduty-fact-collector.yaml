@@ -1,0 +1,18 @@
+---
+token: ${PAGERDUTY_TOKEN}
+server: api.pagerduty.com
+collects:
+  - type: Standards
+    cache: false
+    frequency:
+      minutes: 5
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'
+  - type: Service
+    cache: false
+    frequency:
+      minutes: 5
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'
