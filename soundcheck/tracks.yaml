@@ -138,3 +138,15 @@
           name: Requires service type to be Service
           description: >
             Indicates whether the PagerDuty resource associated to the entity is a service.
+- id: sonarqube
+  name: SonarQube
+  ownerEntityRef: group:default/web
+  description: >
+    Indicates if SonarQube is configured for the entity
+  levels:
+    - ordinal: 1
+      checks:
+        - id: has_sonarqube_project
+          name: Has an associated SonarQube project
+          description: >
+            Indicates whether the entity has a SonarQube project setup for it.

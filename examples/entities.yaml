@@ -14,6 +14,7 @@ metadata:
   name: example-website
   annotations:
     pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    sonarqube.org/project-key: <INSERT_SONARQUBE_PROJECT_KEY>
 spec:
   type: website
   lifecycle: experimental
