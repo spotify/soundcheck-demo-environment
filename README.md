@@ -60,6 +60,19 @@ This will give you a backstage instance with Soundcheck installed and some sampl
 
 The backstage demo environment will be running at `http://localhost:7007`
 
+## SonarQube Checks
+
+The docker-compose file will stand up a local SonarQube server and bootstrap it with a test project with the following properties:
+
+```
+project name: test-project
+project key: test-project-key
+```
+
+The local SonarQube server can be accessed on `localhost:9000` by using the username `admin` and password `admin123` to login.
+
+SoundCheck checks have been configured to run against the `example website` entity which has been configured with the SonarQube annotation with a value that matches the SonarQube project key.
+
 ## Configure PagerDuty Checks
 
 ### 1. Setup pager duty service
