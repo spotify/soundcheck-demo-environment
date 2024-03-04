@@ -8,11 +8,11 @@ collects:
         spec.type: 'website'
     cache: false
     frequency:
-      minutes: 1
+      minutes: 5
   - type: service-level-objective
     filter:
       - kind: 'Component'
         spec.type: 'website'
     cache: false
     frequency:
-      minutes: 1
+      minutes: 5

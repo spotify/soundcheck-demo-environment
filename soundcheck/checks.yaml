@@ -199,7 +199,7 @@
       - 'web'
   schedule:
     frequency:
-      minutes: 1
+      minutes: 5
     filter:
       - kind: 'Component'
       - spec.type: 'Website'
@@ -211,7 +211,7 @@
     value: 'service_level_objective_search_results'
   schedule:
     frequency:
-      minutes: 1
+      minutes: 5
     filter:
       - kind: 'Component'
       - spec.type: 'Website'
