@@ -203,3 +203,15 @@
     filter:
       - kind: 'Component'
       - spec.type: 'Website'
+- id: has-an-slo-defined
+  rule:
+    factRef: datadog:default/service-level-objective
+    path: $.data.type
+    operator: matches
+    value: 'service_level_objective_search_results'
+  schedule:
+    frequency:
+      minutes: 1
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'

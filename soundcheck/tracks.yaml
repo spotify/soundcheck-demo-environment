@@ -150,3 +150,7 @@
           name: Requires service definition with type to be defined
           description: >
             Indicates whether a DataDog service definition has been defined
+        - id: has-an-slo-defined
+          name: Requires service definition to have an SLO attached
+          description: >
+            Indicates whether a DataDog service definition has an SLO defined

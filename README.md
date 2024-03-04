@@ -145,6 +145,14 @@ spec:
 3. Navigate to Service Mgmt > Service Catalog > Setup & Config
 4. Click Create New Service Entry
 5. Define your new service being sure to select a `Type`
+6. Navigate to your new service
+7. define a SLO making sure it includes the tag: `service:<YOUR_SERVICE_NAME>` replacing `<YOUR_SERVICE_NAME` with the name of the service your defined in step 5
+8. Navigate to Organizational Settings > API Keys, and create a new key if none exists
+9. Navigate to Organizational Settings > Application Keys, and create a new key if none exists
+10. set the scope of the application key to include the following
+
+- apm_service_catalog_read
+- slos_read
 
 ### 2. Update docker-compose.yml
 

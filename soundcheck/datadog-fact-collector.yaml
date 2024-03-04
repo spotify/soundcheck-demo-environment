@@ -9,3 +9,10 @@ collects:
     cache: false
     frequency:
       minutes: 1
+  - type: service-level-objective
+    filter:
+      - kind: 'Component'
+        spec.type: 'website'
+    cache: false
+    frequency:
+      minutes: 1
