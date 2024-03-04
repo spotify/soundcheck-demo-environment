@@ -186,3 +186,20 @@
     filter:
       - kind: 'Component'
       - spec.type: 'Website'
+- id: requires-service-definition-with-type
+  rule:
+    factRef: datadog:default/service-definition
+    path: $.data.attributes.schema.type
+    operator: in
+    value:
+      - 'cache'
+      - 'custom'
+      - 'db'
+      - 'serverless function'
+      - 'web'
+  schedule:
+    frequency:
+      minutes: 1
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'

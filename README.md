@@ -36,6 +36,9 @@ services:
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
       PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      DATADOG_HOST: <INSERT_DATADOG_HOST>
+      DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
+      DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
     ports:
       - '7007:7007'
     volumes:
@@ -94,6 +97,9 @@ services:
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
       PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      DATADOG_HOST: <INSERT_DATADOG_HOST>
+      DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
+      DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
     ports:
       - '7007:7007'
     volumes:
@@ -112,13 +118,82 @@ Update value for `<INSERT_PAGERDUTY_SERVICE_ID>` with the service id value from 
 
 ```yaml
 ---
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: example-website
   annotations:
     pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
+spec:
+  type: website
+  lifecycle: experimental
+  owner: guests
+  system: examples
+  providesApis: [example-grpc-api]
+---
+```
+
+### 4. Restart your backstage instance
+
+## Configure DataDog Checks
+
+### 1. Setup DataDog Service Definition
+
+1. Go to https://app.datadoghq.com/account/login
+2. Sign in
+3. Navigate to Service Mgmt > Service Catalog > Setup & Config
+4. Click Create New Service Entry
+5. Define your new service being sure to select a `Type`
+
+### 2. Update docker-compose.yml
+
+Update the following values:
+
+- `<INSERT_DATADOG_HOST>`: this value will depend on the region you created your account in, for eu `https://api.datadoghq.eu`
+- <INSERT_DATADOG_APP_KEY>: add your app key found under Organizational Settings > Application Keys
+- <INSERT_DATADOG_API_KEY>: add your api key found under Organizational Settings > API Keys
+
+```yaml
+version: '3'
+services:
+  backstage:
+    image: backstage
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: postgres
+      # Add your token here
+      GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
+      SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      DATADOG_HOST: <INSERT_DATADOG_HOST>
+      DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
+      DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
+    ports:
+      - '7007:7007'
+    volumes:
+      - ./soundcheck:/app/soundcheck
+      - ./examples/:/app/examples
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+```
+
+### 3. Update examples/entities.yaml
+
+Update value for `<INSERT_DATADOG_SERVICE_ID>` with the name of the service definition you created from step 1.
+
+```yaml
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-website
+  annotations:
+    pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
 spec:
   type: website
   lifecycle: experimental
@@ -182,4 +257,8 @@ soundcheck:
       $include: ./soundcheck/scm-fact-collector.yaml
     branch:
       $include: ./soundcheck/branch-fact-collector.yaml
+    pagerduty:
+      $include: ./soundcheck/pagerduty-fact-collector.yaml
+    datadog:
+      $include: ./soundcheck/datadog-fact-collector.yaml
 ```

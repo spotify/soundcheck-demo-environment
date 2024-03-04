@@ -138,3 +138,15 @@
           name: Requires service type to be Service
           description: >
             Indicates whether the PagerDuty resource associated to the entity is a service.
+- id: datadog
+  name: DataDog
+  ownerEntityRef: group:default/example-owner
+  description: >
+    Indicates whether the entity meets DataDog standards
+  levels:
+    - ordinal: 1
+      checks:
+        - id: requires-service-definition-with-type
+          name: Requires service definition with type to be defined
+          description: >
+            Indicates whether a DataDog service definition has been defined

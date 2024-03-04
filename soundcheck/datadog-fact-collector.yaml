@@ -1,0 +1,11 @@
+appKey: ${DATADOG_APP_KEY}
+apiKey: ${DATADOG_API_KEY}
+baseUrl: ${DATADOG_HOST}
+collects:
+  - type: service-definition
+    filter:
+      - kind: 'Component'
+        spec.type: 'website'
+    cache: false
+    frequency:
+      minutes: 1
