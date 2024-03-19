@@ -109,6 +109,8 @@ soundcheck:
       $include: ./soundcheck/branch-fact-collector.yaml
     pagerduty:
       $include: ./soundcheck/pagerduty-fact-collector.yaml
+    datadog:
+      $include: ./soundcheck/datadog-fact-collector.yaml
 
     ## Uncomment these lines to add more example data
     # - type: url
