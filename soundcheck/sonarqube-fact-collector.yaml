@@ -6,16 +6,16 @@ collects:
       - spec.type: 'website'
     cache: false
     frequency:
-      minutes: 1
+      minutes: 5
   - type: issues
     filter:
       - spec.type: 'website'
     cache: false
     frequency:
-      minutes: 1
+      minutes: 5
   - type: measures
     filter:
       - spec.type: 'website'
     cache: false
     frequency:
-      minutes: 1
+      minutes: 5
