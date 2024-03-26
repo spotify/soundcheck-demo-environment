@@ -186,12 +186,18 @@
     filter:
       - kind: 'Component'
       - spec.type: 'Website'
-- id: has_sonarqube_project
+- id: has_project_tags
   rule:
-    factRef: sonarqube:default/projects
-    path: $.paging.total
-    operator: greaterThan
-    value: 0
+    factRef: sonarqube:default/project-tags
+    path: $.tags
+    operator: contains
+    value: <TAG_PREFIXED_WITH_PROJECT_KEY>
+- id: has_issues
+  rule:
+    factRef: sonarqube:default/issues
+    path: $.total
+    operator: lessThan
+    value: 5
 - id: requires-service-definition-with-type
   rule:
     factRef: datadog:default/service-definition

@@ -146,10 +146,15 @@
   levels:
     - ordinal: 1
       checks:
-        - id: has_sonarqube_project
-          name: Has an associated SonarQube project
+        - id: has_project_tags
+          name: Has tags set
           description: >
-            Indicates whether the entity has a SonarQube project setup for it.
+            Indicates whether SonarQube project has tags set.
+        - id: has_issues
+          name: Has less than 5 issues
+          description: >
+            Indicates whether the SonarQube project has less than 5 issues.
+
 - id: datadog
   name: DataDog
   ownerEntityRef: group:default/example-owner
