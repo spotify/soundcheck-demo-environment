@@ -1,0 +1,21 @@
+baseUrl: ${SONARQUBE_HOST}
+token: ${SONARQUBE_TOkEN}
+collects:
+  - type: project-tags
+    filter:
+      - spec.type: 'website'
+    cache: false
+    frequency:
+      minutes: 5
+  - type: issues
+    filter:
+      - spec.type: 'website'
+    cache: false
+    frequency:
+      minutes: 5
+  - type: measures
+    filter:
+      - spec.type: 'website'
+    cache: false
+    frequency:
+      minutes: 5

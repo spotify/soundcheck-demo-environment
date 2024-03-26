@@ -5,6 +5,7 @@ import { GithubFactCollector } from '@spotify/backstage-plugin-soundcheck-backen
 import { ScmFactCollector } from '@spotify/backstage-plugin-soundcheck-backend-module-scm';
 import { BranchCountFactCollector } from '../factcollectors/branchcount';
 import { PagerDutyFactCollector } from '@spotify/backstage-plugin-soundcheck-backend-module-pagerduty';
+import { SonarQubeFactCollector } from '@spotify/backstage-plugin-soundcheck-backend-module-sonarqube';
 import { DataDogFactCollector } from '@spotify/backstage-plugin-soundcheck-backend-module-datadog';
 
 export default async function createPlugin(
@@ -20,6 +21,7 @@ export default async function createPlugin(
         cache: env.cache,
         logger: env.logger,
       }),
+      SonarQubeFactCollector.create(env.logger),
       DataDogFactCollector.create(env.logger),
       // CUSTOM OR 3P FACT COLLECTORS GO HERE
     )
