@@ -35,7 +35,9 @@ services:
       # Add your token here
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
-      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_TOKEN>
+      SONARQUBE_HOST: <INSERT_SONARQUBE_HOST>
+      SONARQUBE_TOkEN: <INSERT_SONARQUBE_TOKEN>
       DATADOG_HOST: <INSERT_DATADOG_HOST>
       DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
       DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
@@ -96,7 +98,9 @@ services:
       # Add your token here
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
-      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_TOKEN>
+      SONARQUBE_HOST: <INSERT_SONARQUBE_HOST>
+      SONARQUBE_TOkEN: <INSERT_SONARQUBE_TOKEN>
       DATADOG_HOST: <INSERT_DATADOG_HOST>
       DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
       DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
@@ -124,6 +128,7 @@ metadata:
   name: example-website
   annotations:
     pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    sonarqube.org/project-key: <INSERT_SONARQUBE_PROJECT_KEY>
     datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
 spec:
   type: website
@@ -159,8 +164,8 @@ spec:
 Update the following values:
 
 - `<INSERT_DATADOG_HOST>`: this value will depend on the region you created your account in, for eu `https://api.datadoghq.eu`
-- <INSERT_DATADOG_APP_KEY>: add your app key found under Organizational Settings > Application Keys
-- <INSERT_DATADOG_API_KEY>: add your api key found under Organizational Settings > API Keys
+- `<INSERT_DATADOG_APP_KEY>`: add your app key found under Organizational Settings > Application Keys
+- `<INSERT_DATADOG_API_KEY>`: add your api key found under Organizational Settings > API Keys
 
 ```yaml
 version: '3'
@@ -173,7 +178,9 @@ services:
       # Add your token here
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
-      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_TOKEN>
+      SONARQUBE_HOST: <INSERT_SONARQUBE_HOST>
+      SONARQUBE_TOkEN: <INSERT_SONARQUBE_TOKEN>
       DATADOG_HOST: <INSERT_DATADOG_HOST>
       DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
       DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
@@ -201,6 +208,7 @@ metadata:
   name: example-website
   annotations:
     pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    sonarqube.org/project-key: <INSERT_SONARQUBE_PROJECT_KEY>
     datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
 spec:
   type: website
@@ -229,8 +237,8 @@ spec:
 
 Update the following values:
 
-- <SONARQUBE_HOST>: Add the host base url for sonarqube
-- <SONARQUBE_TOkEN>: Add the token you generated in step 1
+- `<SONARQUBE_HOST>`: Add the host base url for sonarqube
+- `<SONARQUBE_TOkEN>`: Add the token you generated in step 1
 
 ```yaml
 version: '3'
@@ -243,7 +251,9 @@ services:
       # Add your token here
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
-      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_TOKEN>
+      SONARQUBE_HOST: <INSERT_SONARQUBE_HOST>
+      SONARQUBE_TOkEN: <INSERT_SONARQUBE_TOKEN>
       DATADOG_HOST: <INSERT_DATADOG_HOST>
       DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
       DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
@@ -271,6 +281,7 @@ metadata:
   name: example-website
   annotations:
     pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    sonarqube.org/project-key: <INSERT_SONARQUBE_PROJECT_KEY>
     datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
 spec:
   type: website
@@ -352,4 +363,6 @@ soundcheck:
       $include: ./soundcheck/pagerduty-fact-collector.yaml
     datadog:
       $include: ./soundcheck/datadog-fact-collector.yaml
+    sonarqube:
+      $include: ./soundcheck/sonarqube-fact-collector.yaml
 ```
