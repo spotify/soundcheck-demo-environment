@@ -111,6 +111,8 @@ soundcheck:
       $include: ./soundcheck/pagerduty-fact-collector.yaml
     sonarqube:
       $include: ./soundcheck/sonarqube-fact-collector.yaml
+    datadog:
+      $include: ./soundcheck/datadog-fact-collector.yaml
 
     ## Uncomment these lines to add more example data
     # - type: url

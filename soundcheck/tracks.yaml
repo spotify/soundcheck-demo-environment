@@ -150,3 +150,19 @@
           name: Has an associated SonarQube project
           description: >
             Indicates whether the entity has a SonarQube project setup for it.
+- id: datadog
+  name: DataDog
+  ownerEntityRef: group:default/example-owner
+  description: >
+    Indicates whether the entity meets DataDog standards
+  levels:
+    - ordinal: 1
+      checks:
+        - id: requires-service-definition-with-type
+          name: Requires service definition with type to be defined
+          description: >
+            Indicates whether a DataDog service definition has been defined
+        - id: has-an-slo-defined
+          name: Requires service definition to have an SLO attached
+          description: >
+            Indicates whether a DataDog service definition has an SLO defined

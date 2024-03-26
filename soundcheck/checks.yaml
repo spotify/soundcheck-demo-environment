@@ -192,3 +192,32 @@
     path: $.paging.total
     operator: greaterThan
     value: 0
+- id: requires-service-definition-with-type
+  rule:
+    factRef: datadog:default/service-definition
+    path: $.data.attributes.schema.type
+    operator: in
+    value:
+      - 'cache'
+      - 'custom'
+      - 'db'
+      - 'serverless function'
+      - 'web'
+  schedule:
+    frequency:
+      minutes: 5
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'
+- id: has-an-slo-defined
+  rule:
+    factRef: datadog:default/service-level-objective
+    path: $.data.type
+    operator: matches
+    value: 'service_level_objective_search_results'
+  schedule:
+    frequency:
+      minutes: 5
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'

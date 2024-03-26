@@ -15,6 +15,7 @@ metadata:
   annotations:
     pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
     sonarqube.org/project-key: <INSERT_SONARQUBE_PROJECT_KEY>
+    datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
 spec:
   type: website
   lifecycle: experimental
