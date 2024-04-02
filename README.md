@@ -35,7 +35,9 @@ services:
       # Add your token here
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
-      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_TOKEN>
+      SONARQUBE_HOST: <INSERT_SONARQUBE_HOST>
+      SONARQUBE_TOkEN: <INSERT_SONARQUBE_TOKEN>
       DATADOG_HOST: <INSERT_DATADOG_HOST>
       DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
       DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
@@ -96,7 +98,9 @@ services:
       # Add your token here
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
-      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_TOKEN>
+      SONARQUBE_HOST: <INSERT_SONARQUBE_HOST>
+      SONARQUBE_TOkEN: <INSERT_SONARQUBE_TOKEN>
       DATADOG_HOST: <INSERT_DATADOG_HOST>
       DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
       DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
@@ -124,6 +128,7 @@ metadata:
   name: example-website
   annotations:
     pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    sonarqube.org/project-key: <INSERT_SONARQUBE_PROJECT_KEY>
     datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
 spec:
   type: website
@@ -159,8 +164,8 @@ spec:
 Update the following values:
 
 - `<INSERT_DATADOG_HOST>`: this value will depend on the region you created your account in, for eu `https://api.datadoghq.eu`
-- <INSERT_DATADOG_APP_KEY>: add your app key found under Organizational Settings > Application Keys
-- <INSERT_DATADOG_API_KEY>: add your api key found under Organizational Settings > API Keys
+- `<INSERT_DATADOG_APP_KEY>`: add your app key found under Organizational Settings > Application Keys
+- `<INSERT_DATADOG_API_KEY>`: add your api key found under Organizational Settings > API Keys
 
 ```yaml
 version: '3'
@@ -173,7 +178,9 @@ services:
       # Add your token here
       GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
       SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
-      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_USER_TOKEN>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_TOKEN>
+      SONARQUBE_HOST: <INSERT_SONARQUBE_HOST>
+      SONARQUBE_TOkEN: <INSERT_SONARQUBE_TOKEN>
       DATADOG_HOST: <INSERT_DATADOG_HOST>
       DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
       DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
@@ -201,6 +208,7 @@ metadata:
   name: example-website
   annotations:
     pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    sonarqube.org/project-key: <INSERT_SONARQUBE_PROJECT_KEY>
     datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
 spec:
   type: website
@@ -212,6 +220,92 @@ spec:
 ```
 
 ### 4. Restart your backstage instance
+
+## Configure SonarQube Checks
+
+### 1. Setup SonarQube Project (SonarCloud)
+
+1. Go to https://sonarcloud.io/login
+2. Sign in
+3. If you do not have a project, click the `+` icon to add a new one
+4. Navigate to My Account > Security
+5. Generate a new Token if you do not already have one
+6. Navigate to your project and click the information tab
+7. Add a tag prefixed with the project key i.e if the project key is `test-key` then a tag will take the value `test-key:test-tag`
+
+### 2. Update docker-compose.yml
+
+Update the following values:
+
+- `<SONARQUBE_HOST>`: Add the host base url for sonarqube
+- `<SONARQUBE_TOkEN>`: Add the token you generated in step 1
+
+```yaml
+version: '3'
+services:
+  backstage:
+    image: backstage
+    environment:
+      POSTGRES_HOST: db
+      POSTGRES_USER: postgres
+      # Add your token here
+      GITHUB_TOKEN: <INSERT_GITHUB_TOKEN>
+      SPOTIFY_PLUGIN_LICENSE: <INSERT_LICENSE_KEY>
+      PAGERDUTY_TOKEN: <INSERT_PAGERDUTY_TOKEN>
+      SONARQUBE_HOST: <INSERT_SONARQUBE_HOST>
+      SONARQUBE_TOkEN: <INSERT_SONARQUBE_TOKEN>
+      DATADOG_HOST: <INSERT_DATADOG_HOST>
+      DATADOG_APP_KEY: <INSERT_DATADOG_APP_KEY>
+      DATADOG_API_KEY: <INSERT_DATADOG_API_KEY>
+    ports:
+      - '7007:7007'
+    volumes:
+      - ./soundcheck:/app/soundcheck
+      - ./examples/:/app/examples
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+```
+
+### 3. Update examples/entities.yaml
+
+Update value for `<INSERT_SONARQUBE_PROJECT_KEY>` with the project key for the project created in step 1. This can be found by navigating to My Projects, selecting a project and then clicking to the Information tab.
+
+```yaml
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-website
+  annotations:
+    pagerduty.com/service-id: <INSERT_PAGERDUTY_SERVICE_ID>
+    sonarqube.org/project-key: <INSERT_SONARQUBE_PROJECT_KEY>
+    datadoghq.com/service-id: <INSERT_DATADOG_SERVICE_ID>
+spec:
+  type: website
+  lifecycle: experimental
+  owner: guests
+  system: examples
+  providesApis: [example-grpc-api]
+---
+```
+
+### 4. Update soundcheck/checks.yaml
+
+Update the value for `<TAG_PREFIXED_WITH_PROJECT_KEY>` with the tag created in step 1.
+
+```yaml
+- id: has_project_tags
+  rule:
+    factRef: sonarqube:default/project-tags
+    path: $.tags
+    operator: contains
+    value: <TAG_PREFIXED_WITH_PROJECT_KEY>
+```
+
+### 5. Restart your backstage instance
 
 ## Adding Github Authentication (optional)
 
@@ -269,4 +363,6 @@ soundcheck:
       $include: ./soundcheck/pagerduty-fact-collector.yaml
     datadog:
       $include: ./soundcheck/datadog-fact-collector.yaml
+    sonarqube:
+      $include: ./soundcheck/sonarqube-fact-collector.yaml
 ```

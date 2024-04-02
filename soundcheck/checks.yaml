@@ -186,6 +186,30 @@
     filter:
       - kind: 'Component'
       - spec.type: 'Website'
+- id: has_project_tags
+  rule:
+    factRef: sonarqube:default/project-tags
+    path: $.tags
+    operator: contains
+    value: <TAG_PREFIXED_WITH_PROJECT_KEY>
+  schedule:
+    frequency:
+      minutes: 5
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'
+- id: has_issues
+  rule:
+    factRef: sonarqube:default/issues
+    path: $.total
+    operator: lessThan
+    value: 5
+  schedule:
+    frequency:
+      minutes: 5
+    filter:
+      - kind: 'Component'
+      - spec.type: 'Website'
 - id: requires-service-definition-with-type
   rule:
     factRef: datadog:default/service-definition
