@@ -40,7 +40,7 @@
     "@backstage/plugin-search-backend-module-techdocs": "backstage:^",
     "@backstage/plugin-search-backend-node": "backstage:^",
     "@backstage/plugin-techdocs-backend": "backstage:^",
-    "@spotify/backstage-plugin-soundcheck-backend": "^0.17.7",
+    "@spotify/backstage-plugin-soundcheck-backend": "^0.17.8",
     "@spotify/backstage-plugin-soundcheck-backend-module-datadog": "^0.3.5",
     "@spotify/backstage-plugin-soundcheck-backend-module-github": "^0.6.5",
     "@spotify/backstage-plugin-soundcheck-backend-module-pagerduty": "^0.3.5",

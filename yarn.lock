@@ -11242,9 +11242,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@spotify/backstage-plugin-soundcheck-backend@npm:^0.17.7":
-  version: 0.17.7
-  resolution: "@spotify/backstage-plugin-soundcheck-backend@npm:0.17.7"
+"@spotify/backstage-plugin-soundcheck-backend@npm:^0.17.8":
+  version: 0.17.8
+  resolution: "@spotify/backstage-plugin-soundcheck-backend@npm:0.17.8"
   dependencies:
     "@apidevtools/json-schema-ref-parser": "npm:^11.5.5"
     "@apollo/server": "npm:^4.0.0"
@@ -11264,8 +11264,8 @@ __metadata:
     "@spotify/backstage-plugin-core-common": "npm:^0.6.3"
     "@spotify/backstage-plugin-core-node": "npm:^0.10.4"
     "@spotify/backstage-plugin-slack-node": "npm:^0.2.4"
-    "@spotify/backstage-plugin-soundcheck-common": "npm:^0.14.3"
-    "@spotify/backstage-plugin-soundcheck-node": "npm:^0.8.4"
+    "@spotify/backstage-plugin-soundcheck-common": "npm:^0.14.4"
+    "@spotify/backstage-plugin-soundcheck-node": "npm:^0.8.5"
     "@types/express": "npm:^4.17.6"
     awilix: "npm:^12.0.0"
     bullmq: "npm:^5.0.0"
@@ -11297,24 +11297,7 @@ __metadata:
     yn: "npm:^5.0.0"
     zod: "npm:^3.20.0"
     zod-to-json-schema: "npm:^3.20.2"
-  checksum: 10c0/4f6990eb2e2421fcd59da8286bc8b08cc68d0c889be15b3dd2a15ae7d8f6318f6ca628d0317afe46b3ab99d3220e88da8f28b351074ae6e05588bcfdb35d03e9
-  languageName: node
-  linkType: hard
-
-"@spotify/backstage-plugin-soundcheck-common@npm:^0.14.3":
-  version: 0.14.3
-  resolution: "@spotify/backstage-plugin-soundcheck-common@npm:0.14.3"
-  dependencies:
-    "@backstage/catalog-client": "npm:^1.8.0"
-    "@backstage/catalog-model": "npm:^1.7.1"
-    "@backstage/plugin-permission-common": "npm:^0.8.2"
-    "@backstage/types": "npm:^1.2.0"
-    cron: "npm:^3.0.0"
-    graphql-tag: "npm:^2.12.3"
-    lodash: "npm:^4.17.21"
-    luxon: "npm:^3.1.1"
-    zod: "npm:^3.20.0"
-  checksum: 10c0/3b787d7d7de076f35c6ad55587adde6c62e1ef873bc568f42657d8c55684bd364f5aa04644491fea9fc54153d6c435abc1cbe1dcc37ad6b57cc4a226a6fab956
+  checksum: 10c0/971cfb7d44414f848b673a148fbab6725f6960c84a39173553c50b5257a77178dd13e9c3aa149cbf9c71fe36011e517a4c9ac342763776fb98707101703fc3ef
   languageName: node
   linkType: hard
 
@@ -11332,29 +11315,6 @@ __metadata:
     luxon: "npm:^3.1.1"
     zod: "npm:^3.20.0"
   checksum: 10c0/cd106f5a9e9848a2c756c6cfb07df8149fd1eebc429bd127a78ea17922f6e2314d8a698b28a69693e659baf2500a0f478bac868dd31d48d11cec7c6c525ee420
-  languageName: node
-  linkType: hard
-
-"@spotify/backstage-plugin-soundcheck-node@npm:^0.8.4":
-  version: 0.8.4
-  resolution: "@spotify/backstage-plugin-soundcheck-node@npm:0.8.4"
-  dependencies:
-    "@backstage/backend-common": "npm:^0.25.0"
-    "@backstage/backend-plugin-api": "npm:^1.0.2"
-    "@backstage/catalog-client": "npm:^1.8.0"
-    "@backstage/catalog-model": "npm:^1.7.1"
-    "@backstage/config": "npm:^1.3.0"
-    "@backstage/errors": "npm:^1.2.5"
-    "@backstage/types": "npm:^1.2.0"
-    "@spotify/backstage-plugin-core-node": "npm:^0.10.4"
-    "@spotify/backstage-plugin-soundcheck-common": "npm:^0.14.3"
-    js-yaml: "npm:^4.1.0"
-    lodash: "npm:^4.17.21"
-    luxon: "npm:^3.1.1"
-    p-limit: "npm:3.1.0"
-    winston: "npm:^3.2.1"
-    zod: "npm:^3.20.0"
-  checksum: 10c0/7a4d963aa606fb9da84bb713f274e3bbf9f2a7a0756e9dad06b66aad1c00a4afd2d5ce5ee4b2fb9a5e8c987caa6212a126b164932a36b86db95a7d90b1148e5d
   languageName: node
   linkType: hard
 
@@ -11381,9 +11341,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@spotify/backstage-plugin-soundcheck@npm:^0.14.3":
-  version: 0.14.3
-  resolution: "@spotify/backstage-plugin-soundcheck@npm:0.14.3"
+"@spotify/backstage-plugin-soundcheck@npm:^0.14.4":
+  version: 0.14.4
+  resolution: "@spotify/backstage-plugin-soundcheck@npm:0.14.4"
   dependencies:
     "@backstage/catalog-client": "npm:^1.8.0"
     "@backstage/catalog-model": "npm:^1.7.1"
@@ -11403,7 +11363,7 @@ __metadata:
     "@material-ui/pickers": "npm:3.3.11"
     "@mui/styles": "npm:^5.14.7"
     "@spotify/backstage-plugin-core": "npm:^0.8.3"
-    "@spotify/backstage-plugin-soundcheck-common": "npm:^0.14.3"
+    "@spotify/backstage-plugin-soundcheck-common": "npm:^0.14.4"
     "@tanstack/react-query": "npm:^4.6.1"
     "@types/react-csv": "npm:^1.1.6"
     "@uiw/react-md-editor": "npm:3.20.10"
@@ -11434,7 +11394,7 @@ __metadata:
     react: ^16.13.1 || ^17.0.0 || ^18.0.0
     react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
     react-router-dom: 6.0.0-beta.0 || ^6.3.0
-  checksum: 10c0/0cdb87cb8db37aad5198b0355db51da08f843f8989aa864f7154f9a5bac98f7fd4863a77221139ddb7fcd3f4a472ebea464b8a5e58933b71b5f3bcaf80e36270
+  checksum: 10c0/92b657fa30a443085cfb64ece23630690393379cbacf262907f26b0660b32837b96f8d95c395c3783cc62a3a3c7ace5494c16e945c6caa58ee14795c776a9448
   languageName: node
   linkType: hard
 
@@ -15168,7 +15128,7 @@ __metadata:
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
     "@playwright/test": "npm:^1.32.3"
-    "@spotify/backstage-plugin-soundcheck": "npm:^0.14.3"
+    "@spotify/backstage-plugin-soundcheck": "npm:^0.14.4"
     "@testing-library/dom": "npm:^9.0.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"
@@ -15841,7 +15801,7 @@ __metadata:
     "@backstage/plugin-search-backend-module-techdocs": "backstage:^"
     "@backstage/plugin-search-backend-node": "backstage:^"
     "@backstage/plugin-techdocs-backend": "backstage:^"
-    "@spotify/backstage-plugin-soundcheck-backend": "npm:^0.17.7"
+    "@spotify/backstage-plugin-soundcheck-backend": "npm:^0.17.8"
     "@spotify/backstage-plugin-soundcheck-backend-module-datadog": "npm:^0.3.5"
     "@spotify/backstage-plugin-soundcheck-backend-module-github": "npm:^0.6.5"
     "@spotify/backstage-plugin-soundcheck-backend-module-pagerduty": "npm:^0.3.5"
