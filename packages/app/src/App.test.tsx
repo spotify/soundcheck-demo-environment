@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';;
+import { render, waitFor } from '@testing-library/react';
 import App from './App';
 
 describe('App', () => {
@@ -21,6 +21,7 @@ describe('App', () => {
     };
 
     const rendered = render(<App />);
+
     await waitFor(() => {
       expect(rendered.baseElement).toBeInTheDocument();
     });

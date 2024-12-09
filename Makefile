@@ -4,5 +4,5 @@ start:
 	yarn tsc
 	yarn build:backend
 	yarn build-image
-	docker-compose up
+	docker compose up
 
