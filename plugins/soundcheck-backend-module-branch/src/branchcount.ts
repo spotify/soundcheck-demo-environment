@@ -1,5 +1,5 @@
-import { FactCollector } from "@spotify/backstage-plugin-soundcheck-node";
-import { Entity, stringifyEntityRef } from "@backstage/catalog-model";
+import { FactCollector } from '@spotify/backstage-plugin-soundcheck-node';
+import { Entity, stringifyEntityRef } from '@backstage/catalog-model';
 import {
   CollectionConfig,
   ExtractorConfig,
@@ -9,25 +9,25 @@ import {
   stringifyFactRef,
   getEntityScmUrl,
   isScmEntity,
-} from "@spotify/backstage-plugin-soundcheck-common";
-import { Logger } from "winston";
-import { Config, JsonObject } from "@backstage/config";
-import { DateTime } from "luxon";
-import parseGitUrl from "git-url-parse";
+} from '@spotify/backstage-plugin-soundcheck-common';
+import { Config, JsonObject } from '@backstage/config';
+import { DateTime } from 'luxon';
+import parseGitUrl from 'git-url-parse';
 import {
   DefaultGithubCredentialsProvider,
   GithubCredentialsProvider,
   ScmIntegrations,
-} from "@backstage/integration";
-import { graphql, GraphQlQueryResponseData } from "@octokit/graphql";
+} from '@backstage/integration';
+import { graphql, GraphQlQueryResponseData } from '@octokit/graphql';
+import { LoggerService } from '@backstage/backend-plugin-api';
 
 // EXAMPLE OF A CUSTOM FACT COLLECTOR
 
 export class BranchCountFactCollector implements FactCollector {
-  public static ID = "branch";
+  public static ID = 'branch';
 
   // Private fields
-  readonly #logger: Logger;
+  readonly #logger: LoggerService;
   readonly #credentialsProvider: GithubCredentialsProvider;
 
   /**
@@ -38,7 +38,7 @@ export class BranchCountFactCollector implements FactCollector {
    */
   public static create(
     config: Config,
-    logger: Logger
+    logger: LoggerService,
   ): BranchCountFactCollector {
     return new BranchCountFactCollector(config, logger);
   }
@@ -52,13 +52,13 @@ export class BranchCountFactCollector implements FactCollector {
    * @param {Config} config Configuration object
    * @param {Logger} logger Logger object
    */
-  private constructor(config: Config, logger: Logger) {
+  private constructor(config: Config, logger: LoggerService) {
     this.#logger = logger.child({
       target: this.id,
     });
     this.#credentialsProvider =
       DefaultGithubCredentialsProvider.fromIntegrations(
-        ScmIntegrations.fromConfig(config)
+        ScmIntegrations.fromConfig(config),
       );
   }
 
@@ -86,9 +86,9 @@ export class BranchCountFactCollector implements FactCollector {
    */
   buildCollectionConfigs(
     source: string,
-    extractorConfigs: ExtractorConfig[]
+    extractorConfigs: ExtractorConfig[],
   ): CollectionConfig[] {
-    return extractorConfigs.map((extractorConfig) => ({
+    return extractorConfigs.map(extractorConfig => ({
       factRefs: [getFactRef(source, extractorConfig)],
       filter: extractorConfig.filter,
       frequency: extractorConfig.frequency,
@@ -98,18 +98,18 @@ export class BranchCountFactCollector implements FactCollector {
 
   async collect(
     entities: Entity[],
-    _params?: { factRefs?: FactRef[]; refresh?: FactRef[] }
+    _params?: { factRefs?: FactRef[]; refresh?: FactRef[] },
   ) {
     try {
       const factRef: FactRef = stringifyFactRef({
-        name: "branch_count",
-        scope: "default",
+        name: 'branch_count',
+        scope: 'default',
         source: this.id,
       });
       const results = await Promise.all(
         entities
-          .filter((entity) => isScmEntity(entity))
-          .map((entity) => this.collectData(entity, factRef))
+          .filter(entity => isScmEntity(entity))
+          .map(entity => this.collectData(entity, factRef)),
       );
 
       return results.filter((result): result is Fact => result !== null);
@@ -146,16 +146,16 @@ export class BranchCountFactCollector implements FactCollector {
           headers: {
             authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
       this.#logger.info(
-        `BranchCountFactCollector: ${gitUrl.owner} ${gitUrl.name} - Total Count: ${totalCount} `
+        `BranchCountFactCollector: ${gitUrl.owner} ${gitUrl.name} - Total Count: ${totalCount} `,
       );
 
       return this.buildFact(entityRef, factRef, totalCount);
     } catch (e) {
       this.#logger.error(
-        `BranchCountFactCollector: ${gitUrl.owner} ${gitUrl.name} - Failed to collect branch data with error: ${e}`
+        `BranchCountFactCollector: ${gitUrl.owner} ${gitUrl.name} - Failed to collect branch data with error: ${e}`,
       );
       return null;
     }
@@ -182,8 +182,7 @@ export class BranchCountFactCollector implements FactCollector {
    * Gets the fact names.
    * @returns {Promise<string[]>} A promise that resolves with an array of fact names.
    */
-   async getFactNames(): Promise<string[]> {
+  async getFactNames(): Promise<string[]> {
     return ['branch_count'];
   }
-
 }
