@@ -66,5 +66,8 @@ backend.add(
 backend.add(
   import('@spotify/backstage-plugin-soundcheck-backend-module-datadog'),
 );
+backend.add(
+  import('@internal/backstage-plugin-soundcheck-backend-module-branch'),
+);
 
 backend.start();
