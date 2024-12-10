@@ -28,7 +28,7 @@
     "@backstage/catalog-model": "backstage:^",
     "@backstage/config": "backstage:^",
     "@backstage/integration": "backstage:^",
-    "@octokit/graphql": "^8.1.1",
+    "@octokit/graphql": "^7.1.0",
     "@spotify/backstage-plugin-soundcheck-common": "^0.14.4",
     "@spotify/backstage-plugin-soundcheck-node": "^0.8.5",
     "git-url-parse": "^16.0.0",
