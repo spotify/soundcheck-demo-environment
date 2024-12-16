@@ -96,6 +96,20 @@ export class BranchCountFactCollector implements FactCollector {
     }));
   }
 
+  /**
+   * Collect facts for a set of entities. When called by the Soundcheck
+   * backend, this method typically receives a single entity at a time,
+   * but this behavior is not guaranteed. The collector should return
+   * a list of facts for each given entity according to the given
+   * parameters. If no fact references are provided, the collector should
+   * return all facts that it can collect for the given entity.
+   * The refresh parameter is used to control which facts should be
+   * fetched again, even if they are already cached by the collector. This
+   * caching is in reference to the collector itself, and is separate from
+   * any caching that the Soundcheck backend may perform.
+
+   * This is the primary method and purpose of the collector.
+   */
   async collect(
     entities: Entity[],
     _params?: { factRefs?: FactRef[]; refresh?: FactRef[] },
@@ -119,6 +133,9 @@ export class BranchCountFactCollector implements FactCollector {
     }
   }
 
+  /**
+   * Helper method to fetch the data used to in constructing a Fact.
+   */
   async collectData(entity: Entity, factRef: string) {
     const entityRef = stringifyEntityRef(entity);
     const entityScmUrl = getEntityScmUrl(entity);
@@ -162,14 +179,25 @@ export class BranchCountFactCollector implements FactCollector {
   }
 
   /**
-   * Gets the collection configurations
+    * Returns the CollectionConfigs set on the collector,
+    * which are configurations for how to collect facts
+    * supported by this collector. These configurations include
+    * a set of facts, a filter for which entities to collect those
+    * facts against, a schedule for how often to collect those facts,
+    * an initial delay for how long to wait to collect after startup,
+    * and a cache configuration for how long to cache the collected facts.
+    * See the CollectionConfig type for more information.
+
    * @returns {Promise<CollectionConfig[]>} - A Promise that resolves with an array of collection configurations
    */
   async getCollectionConfigs(): Promise<CollectionConfig[]> {
     return [];
   }
   /**
-   * Gets the data schema.
+   * Get the schema of a fact that this collector can collect, including the
+   * fact's name, description, and any other relevant metadata.
+   * This is used by the front end to show data about the fact when creating
+   * new checks via Soundchecks No-Code UI.
    * @param {_factRef: FactRef} factRef - The reference to the fact.
    * @returns {Promise<string | undefined>} A promise that resolves with the data schema or undefined.
    */
@@ -179,7 +207,9 @@ export class BranchCountFactCollector implements FactCollector {
 
   /**
   /**
-   * Gets the fact names.
+   * Get the names of all facts that this collector can collect.
+   * This is used by the front end to show which facts can be collected when creating
+   * new checks via Soundchecks No-Code UI.
    * @returns {Promise<string[]>} A promise that resolves with an array of fact names.
    */
   async getFactNames(): Promise<string[]> {
